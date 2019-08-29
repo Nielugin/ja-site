@@ -78,6 +78,31 @@ session_start();
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-sm-2" for="trancheAnimation">Nombdre de joueurs :</label>
+                        <div class="col-sm-10">
+                            <span class="control-label col-sm-1" for="nbJoueurA_min">minimum  </span>
+                            <span class="col-sm-3">
+                                <input type="number" onfocusout="nomSaisi(this)" id="nbJoueurA_min" class="form-control"  placeholder="entre 1 et 20 joueurs" name="nbJoueurA_min" min="1" max="20">
+                            </span>
+                            <span class="control-label col-sm-1" for="nbJoueurA_max">maximum  </span>
+                            <span class="col-sm-3">
+                                <input type="number" onfocusout="nomSaisi(this)" id="nbJoueurA_max" class="form-control"  placeholder="entre 5 et 60 joueurs" name="nbJoueurA_max" min="5" max="60">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="objPedaA">Objectif pédagogique :</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" onfocusout="nomSaisi(this)" rows="3" maxlength="300" id="objPedaA" name="objPedaA" placeholder="Objectif pédagogique du jeu (300 caractères max)"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="objSpiA">Objectif spirituel :</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" onfocusout="nomSaisi(this)" rows="3" maxlength="300" id="objSpiA" name="objSpiA" placeholder="Objectif spirituel du jeu (300 caractères max)"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-sm-2" for="butA">But du jeu :</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" onfocusout="nomSaisi(this)" rows="3" maxlength="300" id="butA" name="butA" placeholder="But / Objectif du jeu (300 caractères max)"></textarea>
@@ -93,6 +118,12 @@ session_start();
                         <label class="control-label col-sm-2" for="materielA">Matériel :</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" onfocusout="nomSaisi(this)" rows="5" id="materielA" name="materielA" placeholder="Liste du matériel nécessaire pour le jeu"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="fileToUploadDocumentJeu">Document complémentaire (.pdf, .doc ou .zip) :</label>
+                        <div class="col-sm-10">
+                            <input id="fileToUploadDocumentJeu" type="file" name="fileToUploadDocumentJeu" accept=".pdf,.doc,.zip">
                         </div>
                     </div>
                     </form></div>
