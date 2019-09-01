@@ -68,7 +68,7 @@ session_start();
                     </script>
                     <?php 
                         // si la personne connectée est responsable JA
-                        if ((!empty($_SESSION["user"])) && ($_SESSION["droits"] == "RJ")) {
+                        if ((!empty($_SESSION["user"])) && (in_array("RJ",explode(',',$_SESSION["droits"])))) {
                     ?>
                     <div class="panel panel-danger">
                         <div class="panel-heading">Changer l'image</div>
@@ -95,7 +95,7 @@ session_start();
                     </script>
                     <?php 
                         // si la personne connectée est responsable JA
-                        if ((!empty($_SESSION["user"])) && ($_SESSION["droits"] == "RJ")) {
+                        if ((!empty($_SESSION["user"])) && (in_array("RJ",explode(',',$_SESSION["droits"])))) {
                     ?>
                     <div class="panel panel-danger">
                         <div class="panel-heading">Changer l'image</div>

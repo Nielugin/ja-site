@@ -3,10 +3,10 @@
 session_start();
 
 //Verification d'utilisateur connecté
-// if ( (empty($_SESSION["user"])) || ($_SESSION["droits"] != "RJ") ) {
-//     header('Location: http://ja.de.pau.free.fr');
-//     exit();
-// }
+if ( (empty($_SESSION["user"])) || (!in_array("WA",explode(',',$_SESSION["droits"]))) ) {
+    header('Location: http://ja.de.pau.free.fr');
+    exit();
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -40,7 +40,7 @@ session_start();
                     <em>Tous les champs sont obligatoires. </em>
                     </div>
                     <!-- TODO : Check validite des champs ! -->
-                    <div class="panel-body"><form class="form-horizontal" action="" method="POST">
+                    <div class="panel-body"><form class="form-horizontal" action="listeAnimations.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="nomA">Nom de l'animation :</label>
                         <div class="col-sm-10">
@@ -78,7 +78,7 @@ session_start();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="trancheAnimation">Nombdre de joueurs :</label>
+                        <label class="control-label col-sm-2" for="trancheAnimation">Nombre de joueurs :</label>
                         <div class="col-sm-10">
                             <span class="control-label col-sm-1" for="nbJoueurA_min">minimum  </span>
                             <span class="col-sm-3">
@@ -121,11 +121,12 @@ session_start();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="fileToUploadDocumentJeu">Document complémentaire (.pdf, .doc ou .zip) :</label>
+                        <label class="control-label col-sm-2" for="fileToUploadDocumentJeu">Document complémentaire (.jpg, .pdf, .doc ou .zip) :</label>
                         <div class="col-sm-10">
-                            <input id="fileToUploadDocumentJeu" type="file" name="fileToUploadDocumentJeu" accept=".pdf,.doc,.zip">
+                            <input id="fileToUploadDocumentJeu" type="file" name="fileToUploadDocumentJeu" accept=".jpg,.pdf,.doc,.zip">
                         </div>
                     </div>
+                    <input class="btn btn-success btn-block" type='submit' name='valider' value='Valider'>
                     </form></div>
                 </div>
             </div>

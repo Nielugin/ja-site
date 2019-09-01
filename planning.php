@@ -145,7 +145,7 @@ if (mysql_num_rows($result) > 0) {
         $activiteJA = '<div class="panel '.$panelClass.'">';
         $activiteJA = $activiteJA.'<div class="panel-heading">'.transformerDate($row["dateSamedi"]);
         // si la personne est connectée avec les bons droits
-        if ((!empty($_SESSION["droits"])) && (($_SESSION["droits"] == "RJ") || ($_SESSION["droits"] == "RT") || ($_SESSION["droits"] == "AT"))) {
+        if ((!empty($_SESSION["droits"])) && ((in_array("RJ",explode(',',$_SESSION["droits"]))) || (in_array("RT",explode(',',$_SESSION["droits"]))) || (in_array("AT",explode(',',$_SESSION["droits"]))))) {
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-danger" onclick="resetActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-trash"></span></button>';
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-warning" onclick="modifActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-pencil"></span></button> ';
                     }
@@ -194,7 +194,7 @@ if (mysql_num_rows($result) > 0) {
         $activiteJA = '<div class="panel '.$panelClass.'">';
         $activiteJA = $activiteJA.'<div class="panel-heading">'.transformerDate($row["dateSamedi"]);
         // si la personne est connectée avec les bons droits
-        if ((!empty($_SESSION["droits"])) && (($_SESSION["droits"] == "RJ") || ($_SESSION["droits"] == "RE") || ($_SESSION["droits"] == "AE"))) {
+        if ((!empty($_SESSION["droits"])) && ((in_array("RJ",explode(',',$_SESSION["droits"]))) || (in_array("RE",explode(',',$_SESSION["droits"]))) || (in_array("AE",explode(',',$_SESSION["droits"]))))) {
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-danger" onclick="resetActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-trash"></span></button>';
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-warning" onclick="modifActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-pencil"></span></button> ';
                     }
@@ -243,7 +243,7 @@ if (mysql_num_rows($result) > 0) {
         $activiteJA = '<div class="panel '.$panelClass.'">';
         $activiteJA = $activiteJA.'<div class="panel-heading">'.transformerDate($row["dateSamedi"]);
         // si la personne est connectée avec les bons droits
-        if ((!empty($_SESSION["droits"])) && (($_SESSION["droits"] == "RJ") || ($_SESSION["droits"] == "RC") || ($_SESSION["droits"] == "AC"))) {
+        if ((!empty($_SESSION["droits"])) && ((in_array("RJ",explode(',',$_SESSION["droits"]))) || (in_array("RC",explode(',',$_SESSION["droits"]))) || (in_array("AC",explode(',',$_SESSION["droits"]))))) {
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-danger" onclick="resetActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-trash"></span></button>';
             $activiteJA = $activiteJA.' <button style="float: right" type="button" class="btn btn-warning" onclick="modifActivite(\''.$row["idActivite"].'\')"><span class="glyphicon glyphicon-pencil"></span></button> ';
                     }

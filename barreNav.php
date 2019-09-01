@@ -62,6 +62,7 @@
                 // Set session variables 
                 $row = mysql_fetch_assoc($result);
                 $_SESSION["user"] = $row["login"];
+                $_SESSION["idUser"] = $row["idUtilisateur"];
                 $_SESSION["droits"] = $row["droits"];
             } else {
                 // Afficher une erreur d'authentification
