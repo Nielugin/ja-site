@@ -112,6 +112,13 @@ function post(path, params, method) {
             <li><a href="presentationJA.php">Présentation JA </a></li>
             <li><a href="planning.php">Planning JA</a></li>
             <li><a href="badges.php">Badges </a></li>
+            <?php 
+                if ( (!empty($_SESSION["user"])) && (in_array("WA",explode(',',$_SESSION["droits"])))) {
+            ?>
+                <li><a href="listeAnimations.php">Fiches d'animations </a></li>
+            <?php
+                }
+            ?>
         </ul>
         <?php 
             // si la personne n'est pas connecté
