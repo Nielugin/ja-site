@@ -105,12 +105,16 @@ session_start();
             
             ?>
             <div class="row">
+                <?php
+                /*
                 <div class="panel panel-default">
                     <div class="panel-heading">Filtrer la recherche</div>
                     <div class="panel-body">
                     
                     </div>
                 </div>
+                */
+                ?>
                 <?php
                     if ( (!empty($_SESSION["user"])) && (in_array("WA",explode(',',$_SESSION["droits"]))) ) {
                 ?>
@@ -123,9 +127,9 @@ session_start();
                         <thead>
                             <tr>
                                 <th>Nom de l'animation</th>
-                                <th>Durée</th>
-                                <th>Age</th>
-                                <th>Nombre</th>
+                                <th><img class="img-responsive" src="images/icons8-time.png" alt="Durée"/></th>
+                                <th><img class="img-responsive" src="images/icons8-age.png" alt="Age"/></th>
+                                <th><img class="img-responsive" src="images/icons8-nbjoueur.png" alt="Nombre de joueurs"/></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,7 +148,7 @@ session_start();
                         if (mysql_num_rows($result) > 0) {
                             // Affichage des résultats
                             while($row = mysql_fetch_assoc($result)) {
-                                echo "<tr><td><a href='afficherAnimation.php?idA=".$row['idAnimation']."'>".$row["nomA"]."</a></td><td>".$row["duree"]." min</td><td>".$row["ageMin"]." - ".$row["ageMax"]." ans</td><td>".$row["nbJoueurMin"]." - ".$row["nbJoueurMax"]." personnes</td></tr>";
+                                echo "<tr><td><a href='afficherAnimation.php?idA=".$row['idAnimation']."'>".$row["nomA"]."</a></td><td>".$row["duree"]." min</td><td>".$row["ageMin"]." - ".$row["ageMax"]." ans</td><td>".$row["nbJoueurMin"]." - ".$row["nbJoueurMax"]." pers.</td></tr>";
                             }
                         }
                         deconnecterBDD($db);
