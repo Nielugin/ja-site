@@ -182,7 +182,7 @@ echo $activiteJA;
 
 deconnecterBDD($db);
 ?>
-<h3>Prochaines activités Compagnons</h3>
+<h3>Prochaines activités Ambassadeurs <!--Compagnons--></h3>
                 
                                 <?php
 // Connexion à la BDD

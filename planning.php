@@ -212,7 +212,7 @@ deconnecterBDD($db);
                 
                 </div>
                 <div class="col-sm-4">
-                <h2>Prochaines activités Compagnons</h2>
+                <h2>Prochaines activités Ambassadeurs <!-- Compagnons--> </h2>
 <!--Format des activités-->
 <!--<div class="panel panel-default">
   <div class="panel-heading">Panel Heading</div>
