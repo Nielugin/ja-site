@@ -34,7 +34,7 @@ CREATE TABLE FicheTechniqueAnimation (
     objectifsVises VARCHAR(500),
     themeActivite VARCHAR(300),
     typeActivite VARCHAR(300),
-    nombreAnims INT,
+    nombreAnims VARCHAR(500),
     deplacement BOOLEAN,
     fonctionnementEn SET('Individuel','Equipe'),
     constitutionEquipe VARCHAR(100),
