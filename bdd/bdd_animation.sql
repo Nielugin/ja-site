@@ -19,3 +19,30 @@ CREATE TABLE Animation (
     materiel VARCHAR(500),
     docPJ VARCHAR(100)
 );
+
+
+
+CREATE TABLE FicheTechniqueAnimation (
+    idFTA SERIAL PRIMARY KEY,
+    nomActivite VARCHAR(200) NOT NULL,
+    dureeActivite INT, --duree en minutes
+    zoneActivite ENUM('Locale','Regionale','Federale'),
+    dateActivite DATE,
+    publicVise SET('Bourgeons','Tisons','Explos','Compagnons','Aines'),
+    raisonActivite VARCHAR(500),
+    texteMedit VARCHAR(100),
+    objectifsVises VARCHAR(500),
+    themeActivite VARCHAR(300),
+    typeActivite VARCHAR(300),
+    nombreAnims INT,
+    deplacement BOOLEAN,
+    fonctionnementEn SET('Individuel','Equipe'),
+    constitutionEquipe VARCHAR(100),
+    lieuDebutActivite VARCHAR(100),
+    lieuFinActivite VARCHAR(100),
+    typeDeFin VARCHAR(100),
+    trameGenerale VARCHAR(1000),
+    deroulementActivite  VARCHAR(20000),
+    materiel VARCHAR(500),
+    docPJ VARCHAR(100)
+);
