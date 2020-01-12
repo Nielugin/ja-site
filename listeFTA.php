@@ -45,38 +45,132 @@ if ( (empty($_SESSION["user"])) || !(in_array("WA",explode(',',$_SESSION["droits
 
 
             //Si on arrive sur cette page suite à l'ajout d'une animation
-            if (isset($_POST['nomA']) && (!empty($_SESSION["user"])) ) {
-                print_r($_POST);
+            if (isset($_POST['nomActivite']) && (!empty($_SESSION["user"])) ) {
+                //print_r($_POST);
                 //On recupere chacun des champs pour la BDD
                 //idAnimation	
                 $dateCreation = date('Y-m-d', time());
                 $userCreation = $_SESSION["idUser"];
-                $nomA = $_POST['nomA'];
-                $arrayType = array(); 
-                if (isset($_POST['typeA_int']))
-                    $arrayType[] ="interieur ";
-                if (isset($_POST['typeA_ext']))
-                    $arrayType[] ="exterieur ";
-                if (isset($_POST['typeA_jcr']))
-                    $arrayType[] ="jeuCourt ";
-                if (isset($_POST['typeA_vei']))
-                    $arrayType[] ="veillee ";
-                if (isset($_POST['typeA_jco']))
-                    $arrayType[] ="jeuCoop ";
-                if (isset($_POST['typeA_gdj']))
-                    $arrayType[] ="grandJeu ";
-                $typeA = implode(",",$arrayType);
-                //set('interieur','exterieur','veillee','jeuCourt','jeuCoop','grandJeu')
-                $ageMin = $_POST['trancheA_min'];
-                $ageMax = $_POST['trancheA_max'];
-                $duree = $_POST['dureeA'];
-                $nbJoueurMin = $_POST['nbJoueurA_min'];
-                $nbJoueurMax = $_POST['nbJoueurA_max'];
-                $objPeda = $_POST['objPedaA'];
-                $objSpi = $_POST['objSpiA'];
-                $butJeu = $_POST['butA'];
-                $regles = $_POST['regleA'];
-                $materiel = $_POST['materielA'];
+                $nomActivite = $_POST['nomActivite'];
+                $sqlColumns = "dateCreation, userCreation, nomActivite";
+                $sqlValues = "'".$dateCreation."','".$userCreation."','".$nomActivite."'";
+
+                if (isset($_POST['dureeActivite']) && !empty($_POST['dureeActivite'])) {
+                    $dureeActivite = $_POST['dureeActivite'];
+                    $sqlColumns .= ",dureeActivite";
+                    $sqlValues .=",".$dureeActivite;
+                }
+                if (isset($_POST['zoneActivite']) && !empty($_POST['zoneActivite'])) {
+                    $zoneActivite = $_POST['zoneActivite'];
+                    $sqlColumns .= ",zoneActivite";
+                    $sqlValues .=",'".$zoneActivite."'";
+                }
+                if (isset($_POST['dateActivite']) && !empty($_POST['dateActivite'])){
+                    $dateActivite = $_POST['dateActivite'];
+                    $sqlColumns .= ",dateActivite";
+                    $sqlValues .=",'".$dateActivite."'";
+                }
+                $arrayPublic = array(); 
+                if (isset($_POST['bourgeons']))
+                    $arrayPublic[] =$_POST['bourgeons'];
+                if (isset($_POST['tisons']))
+                    $arrayPublic[] =$_POST['tisons'];
+                if (isset($_POST['explos']))
+                    $arrayPublic[] =$_POST['explos'];
+                if (isset($_POST['compagnons']))
+                    $arrayPublic[] =$_POST['compagnons'];
+                if (isset($_POST['ainés']))
+                    $arrayPublic[] =$_POST['ainés'];
+                $publicVise = implode(",",$arrayPublic);
+                if (count($arrayPublic)>0) {
+                    $sqlColumns .= ",publicVise";
+                    $sqlValues .=",'".$publicVise."'";
+                }
+                if (isset($_POST['raisonActivite']) && !empty($_POST['raisonActivite'])) {
+                    $raisonActivite = $_POST['raisonActivite'];
+                    $sqlColumns .= ",raisonActivite";
+                    $sqlValues .=",'".$raisonActivite."'";
+                }
+                if (isset($_POST['texteMedit']) && !empty($_POST['texteMedit'])) {
+                    $texteMedit = $_POST['texteMedit'];
+                    $sqlColumns .= ",texteMedit";
+                    $sqlValues .=",'".$texteMedit."'";
+                }
+                if (isset($_POST['objectifsVises']) && !empty($_POST['objectifsVises'])) {
+                    $objectifsVises = $_POST['objectifsVises'];
+                    $sqlColumns .= ",objectifsVises";
+                    $sqlValues .=",'".$objectifsVises."'";
+                }
+                if (isset($_POST['themeActivite']) && !empty($_POST['themeActivite'])) {
+                    $themeActivite = $_POST['themeActivite'];
+                    $sqlColumns .= ",themeActivite";
+                    $sqlValues .=",'".$themeActivite."'";
+                }
+                if (isset($_POST['typeActivite']) && !empty($_POST['typeActivite'])) {
+                    $typeActivite = $_POST['typeActivite'];
+                    $sqlColumns .= ",typeActivite";
+                    $sqlValues .=",'".$typeActivite."'";
+                }
+                if (isset($_POST['nombreAnims']) && !empty($_POST['nombreAnims'])) {
+                    $nombreAnims = $_POST['nombreAnims'];
+                    $sqlColumns .= ",nombreAnims";
+                    $sqlValues .=",'".$nombreAnims."'";
+                }
+                if (isset($_POST['deplacement']) && !empty($_POST['deplacement'])) {
+                    $deplacement = 0;
+                    if ($_POST['deplacement'] == "oui")
+                        $deplacement = 1;
+                    $sqlColumns .= ",deplacement";
+                    $sqlValues .=",".$deplacement;
+                }
+                if (isset($_POST['fonctionnementEn']) && !empty($_POST['fonctionnementEn'])) {
+                    $fonctionnementEn = $_POST['fonctionnementEn'];
+                    $sqlColumns .= ",fonctionnementEn";
+                    $sqlValues .=",'".$fonctionnementEn."'";
+                }
+                if (isset($_POST['constitutionEquipe']) && !empty($_POST['constitutionEquipe'])) {
+                    $constitutionEquipe = $_POST['constitutionEquipe'];
+                    if ($constitutionEquipe == "autre")
+                        $constitutionEquipe = $_POST['constitutionAutre'];
+                    $sqlColumns .= ",constitutionEquipe";
+                    $sqlValues .=",'".$constitutionEquipe."'";
+                }
+                if (isset($_POST['lieuDebutActivite']) && !empty($_POST['lieuDebutActivite'])) {
+                    $lieuDebutActivite = $_POST['lieuDebutActivite'];
+                    if ($lieuDebutActivite == "autre")
+                        $lieuDebutActivite = $_POST['lieuDebutAutre'];
+                    $sqlColumns .= ",lieuDebutActivite";
+                    $sqlValues .=",'".$lieuDebutActivite."'";
+                }
+                if (isset($_POST['lieuFinActivite']) && !empty($_POST['lieuFinActivite'])) {
+                    $lieuFinActivite = $_POST['lieuFinActivite'];
+                    if ($lieuFinActivite == "autre")
+                        $lieuFinActivite = $_POST['lieuFinAutre'];
+                    $sqlColumns .= ",lieuFinActivite";
+                    $sqlValues .=",'".$lieuFinActivite."'";
+                }
+                if (isset($_POST['typeDeFin']) && !empty($_POST['typeDeFin'])) {
+                    $typeDeFin = $_POST['typeDeFin'];
+                    if ($typeDeFin == "autre")
+                        $typeDeFin = $_POST['finAutre'];
+                    $sqlColumns .= ",typeDeFin";
+                    $sqlValues .=",'".$typeDeFin."'";
+                }
+                if (isset($_POST['trameGenerale']) && !empty($_POST['trameGenerale'])) {
+                    $trameGenerale = $_POST['trameGenerale'];
+                    $sqlColumns .= ",trameGenerale";
+                    $sqlValues .=",'".$trameGenerale."'";
+                }
+                if (isset($_POST['deroulementActivite']) && !empty($_POST['deroulementActivite'])) {
+                    $deroulementActivite = $_POST['deroulementActivite'];
+                    $sqlColumns .= ",deroulementActivite";
+                    $sqlValues .=",'".$deroulementActivite."'";
+                }
+                if (isset($_POST['materiel']) && !empty($_POST['materiel'])) {
+                    $materiel = $_POST['materiel'];
+                    $sqlColumns .= ",materiel";
+                    $sqlValues .=",'".$materiel."'";
+                }
                 $docPJ = "./docAnimation/".$_SESSION["user"]."-".$dateCreation."-".$_FILES['fileToUploadDocumentJeu']['name'];
                 if ($_FILES['fileToUploadDocumentJeu']['error']  > 0 ) {
                     echo 'Erreur:'.$_FILES['fileToUploadDocumentJeu']['error'].'<br/>';
@@ -88,9 +182,9 @@ if ( (empty($_SESSION["user"])) || !(in_array("WA",explode(',',$_SESSION["droits
                 
                 //On cree en BDD l'animation
             
-                $sql = "INSERT INTO Animation(dateCreation, userCreation, nomA, typeA, ageMin, ageMax, duree, nbJoueurMin, nbJoueurMax, objPeda, objSpi, butJeu, regles, materiel, docPJ) VALUES ('$dateCreation', '$userCreation', '$nomA', '$typeA', $ageMin, $ageMax, $duree, $nbJoueurMin, $nbJoueurMax, '$objPeda', '$objSpi', '$butJeu', '$regles', '$materiel', '$docPJ')";
+                $sql = "INSERT INTO FicheTechniqueAnimation(".$sqlColumns.", docPJ) VALUES (".$sqlValues.", '$docPJ')";
                 
-                echo "<br>".$sql."<br>";
+                //echo "<br>".$sql."<br>";
                 
                 // Connexion à la BDD
                 $db = connecterBDD($servername, $username, $password);

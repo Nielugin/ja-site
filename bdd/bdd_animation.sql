@@ -24,6 +24,8 @@ CREATE TABLE Animation (
 
 CREATE TABLE FicheTechniqueAnimation (
     idFTA SERIAL PRIMARY KEY,
+    dateCreation DATE NOT NULL ,
+    userCreation INT REFERENCES Utilisateur(idUtilisateur),
     nomActivite VARCHAR(200) NOT NULL,
     dureeActivite INT, --duree en minutes
     zoneActivite ENUM('Locale','Regionale','Federale'),
